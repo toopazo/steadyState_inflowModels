@@ -19,7 +19,7 @@ function bet_forces_plot(...
     ylabel('Thrust N');
     legend('type I', 'type II', 'type III', 'Location','northwest');
     grid on;
-    saveas(fig, 'img/bet_forces_plot_1.jpg')
+    saveas(fig, 'img/hover_bet_forces_plot_1.jpg')
     % pause(2)    
 
     fig = figure(2);
@@ -31,7 +31,7 @@ function bet_forces_plot(...
     ylabel('torque N');
     legend('type I', 'type II', 'type III', 'Location','northwest');
     grid on;
-    saveas(fig, 'img/bet_forces_plot_2.jpg')
+    saveas(fig, 'img/hover_bet_forces_plot_2.jpg')
     % pause(2)
     
     fig = figure(3);
@@ -43,7 +43,7 @@ function bet_forces_plot(...
     ylabel('power W');
     legend('type I', 'type II', 'type III', 'Location','northwest');
     grid on;
-    saveas(fig, 'img/bet_forces_plot_3.jpg')
+    saveas(fig, 'img/hover_bet_forces_plot_3.jpg')
     % pause(2)
     
     fig = figure(4);
@@ -52,7 +52,8 @@ function bet_forces_plot(...
     surf(X, Y, lambdai_arr)
     surf(X, Y, lambdai_arr.*0)  % plot zero surface
     % plot_my_3d(psi_arr, r_arr, lambdai_arr)
-    arg = [ 'mean \lambda_i(r) distribution along \psi' ];
+    % arg = [ 'mean \lambda_i(r) distribution along \psi' ];
+    arg = [ '\lambda_i(\psi, r) distribution' ];
     title(arg);
     xlabel('radius');
     ylabel('\psi deg');
@@ -60,7 +61,7 @@ function bet_forces_plot(...
     view(40, 35);
     % legend('type I', 'type II', 'type III', 'Location','northwest');
     grid on;
-    saveas(fig, 'img/bet_forces_plot_4.jpg');
+    saveas(fig, 'img/hover_bet_forces_plot_4.jpg');
     % pause(2)           
    
     function plot_my_3d(psi_arr, r_arr, lambdai_arr)

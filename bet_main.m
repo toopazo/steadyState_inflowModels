@@ -7,8 +7,8 @@ blade_st = blade_model();
 A = pi*blade_st.R^2;
 Vtip = blade_st.omega*blade_st.R;
 
-lambda_c    = 1*2 / (Vtip);   % vertical vel
-mu          = 1*10 / (Vtip);   % horizontal vel
+lambda_c    = 0*2 / (Vtip);   % vertical vel
+mu          = 0*10 / (Vtip);   % horizontal vel
 fprintf('lambda_c %.4f, mu %.4f \n', lambda_c, mu);
 
 TPP_alpha = atan(lambda_c / (mu+10^-6)); 
