@@ -1,7 +1,7 @@
 # steadyState_inflowModels
 Software implementation of static (steady state) inflow model for a rotor in hover (BEMT) and forward flight (Glauert approximation)
 
-![alt text](https://github.com/toopazo/steadyState_inflowModels/blob/master/img/bemt_forces_plot_4.jpg)
+![alt text](https://github.com/toopazo/steadyState_inflowModels/blob/master/img/bet_forces_plot_4.jpg)
 
 
 ## Simple run
