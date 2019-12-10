@@ -7,7 +7,7 @@ Software implementation of static (steady state) inflow model for a rotor in hov
 ## Simple run
 bet_main.m
 
-# Little explanaition
+## Pseudo documentation (explanation)
 
 The force integration is performed by bet_forces.m 
 
