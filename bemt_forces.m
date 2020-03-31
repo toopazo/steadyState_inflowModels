@@ -53,7 +53,7 @@ function [...
         
         % convert from coeff form to total values
         A = pi*blade_st.R^2;
-        Vtip = omega*blade_st.R;      
+        Vtip = omega*blade_st.R;
               
         % (psi, r)
         dT_arr(1, j) = ( rho*A*Vtip^2 ) * dCT;

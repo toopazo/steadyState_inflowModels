@@ -29,7 +29,7 @@ function [dT dQ dP] = bet_dT_dQ_dP(UT, UP, UR, c, Cla, Cd, theta, Nb, rho, omega
 
     phi = UP / UT;
     dT = Nb * dL;
-    dQ = Nb * (phi*dL + dD)*y;
+    dQ = Nb * (phi*dL + dD) * y;
     dP = dQ * omega;    
 
 end

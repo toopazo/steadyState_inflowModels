@@ -12,7 +12,7 @@ lambda_c    = 0 / (omega*blade_st.R);   % vertical vel
 
 A = pi*blade_st.R^2;
 Vtip = omega*blade_st.R;
-CT_guess = 5 / (rho*A*Vtip^2);
+CT_target   = 5 / (rho*A*Vtip^2);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 disp('constant twist blade')
