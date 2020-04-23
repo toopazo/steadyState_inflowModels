@@ -64,13 +64,24 @@ function bet_st = bet_forces(blade_st)
             % sigma     = blade solidity   
             c       = interp1(blade_st.r_arr, blade_st.c_arr, r, 'linear');            
             sigma   = interp1(blade_st.r_arr, blade_st.sigma_arr, r, 'linear');
-            theta   = interp1(blade_st.r_arr, blade_st.theta_arr, r, 'linear');                         
+            theta   = interp1(blade_st.r_arr, blade_st.theta_arr, r, 'linear');
         
-            % TODO coaxial modofication
+            % Coaxial modification according to leishman2006aerodynamic
             if isfield(blade_st,'position')
                 if blade_st.position == 'lower';
                     if r <= 0.5;
-                        lambda_c = blade_st.lambda_u_downwash;
+                        % inflow 1
+                        % lambda_u = interp1(r_arr, 
+                        %     blade_st.lambda_u_arr, 2*r, 'linear');
+                        % inflow 2
+                        % lambda_u = interp1(r_arr, ...
+                        %     blade_st.lambda_u_arr, r, 'linear');
+                        % inflow 3
+                        lambda_u = mean(blade_st.lambda_u_arr);                        
+                        if isnan(lambda_u)
+                            disp('[bet_forces] isnan(lambda_u)')
+                        end
+                        lambda_c = blade_st.lambda_c + 2*lambda_u;
                     end
                 end
             end
@@ -83,7 +94,7 @@ function bet_st = bet_forces(blade_st)
             % sigma     = blade solidity
             % Cla       = lift-curve slope
             % theta     = blade pitch   
-            % CT_target  = thrust coeff guess for mu > 0 algorithms            
+            % CT_target = thrust coeff guess for mu > 0 algorithms            
             [...
                 lambda          , ...
                 lambda_i        , ...

@@ -87,17 +87,27 @@ function blade_st = blade_model(blade_type, lambda_c, mu, verbose)
     % Blade geometry (pitch, chord, solidity)
     blade_st.blade_type = blade_type;
         
-    if strcmp(blade_type, 'constant_twist_blade')
+    known_blade_type = false;
+    if strfind(blade_type,'constant_twist_blade') == 1
+        known_blade_type = true;
         % disp('[blade_model] constant twist blade')
-        blade_st.theta_arr  = UH60A_ctb_theta0 .* ones_arr;
+        
+        theta0str = extractBetween(blade_type,'constant_twist_blade_','rad');
+        if isempty(theta0str)
+            theta0 = UH60A_ctb_theta0;
+        else
+            theta0 = str2double(theta0str);
+        end      
+        blade_st.theta_arr  = theta0 .* ones_arr;
                     
         % chord and solidty
         blade_st.chord      = UH60A_chord;
         blade_st.solidity   = (blade_st.Nb * blade_st.chord) / (pi*blade_st.R);
         blade_st.c_arr      = blade_st.chord .* ones_arr;
         blade_st.sigma_arr  = blade_st.solidity .* ones_arr; 
-    end
+    end    
     if strcmp(blade_type, 'ideally_twisted_blade')    
+        known_blade_type = true;
         % disp('[blade_model] ideally twisted blade')
         blade_st.theta_arr = UH60A_itb_theta0 .* ones_arr ./ blade_st.r_arr;
 
@@ -113,7 +123,8 @@ function blade_st = blade_model(blade_type, lambda_c, mu, verbose)
         blade_st.c_arr      = blade_st.chord .* ones_arr;
         blade_st.sigma_arr  = blade_st.solidity .* ones_arr;
     end
-    if strcmp(blade_type, 'linearly_twisted_blade')      
+    if strcmp(blade_type, 'linearly_twisted_blade')  
+        known_blade_type = true;    
         % disp('[blade_model] linearly twisted blade')
         blade_st.theta_arr = linspace(...
             UH60A_ltb_theta0, UH60A_ltb_theta1, nsections + 1);
@@ -123,6 +134,10 @@ function blade_st = blade_model(blade_type, lambda_c, mu, verbose)
         blade_st.solidity   = (blade_st.Nb * blade_st.chord) / (pi*blade_st.R);
         blade_st.c_arr      = blade_st.chord .* ones_arr;
         blade_st.sigma_arr  = blade_st.solidity .* ones_arr;
+    end
+    if known_blade_type == false
+        disp('[blade_model] unknown blade_type')
+        blade_type
     end
     
     % Case name
